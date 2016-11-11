@@ -1,0 +1,314 @@
+new gromacs location
+/lustre/medusa/zhiyao/gromacs-505/bin
+
+module load vmd/1.9.2
+
+cd /lustre/medusa/zhiyao/
+find . -exec touch {} \;
+An important way to keep files  from get deleted.
+
+
+1. Area per lipid
+
+
+3.order parameter
+g_order -s 300Kstep7.2_production.tpr -f 300Kstep7.4_production.trr -n Chain2_Order.ndx -b 14000 -e 15000 -od 3_40analysis/300KChain2CHL_Order.xvg
+
+g_order -s 305Kstep7.2_production.tpr -f 305Kstep7.4_production.trr -n Chain2_Order.ndx -b 14000 -e 15000 -od 3_40analysis/305KChain2CHL_Order.xvg
+
+
+
+
+g_order -s 295Kstep7.2_production.tpr -f 295Kstep7.4_production.trr -n Chain2_Order.ndx -b 29000 -e 30000 -od 3_55analyis/295KChain2CHL_Order.xvg
+
+rder -s 315Kstep7.2_production.tpr -f 315Kstep7.4_production.trr -n Chain2_Order.ndx -b 29000 -e 30000 -od 3_55analyis/315KChain2CHL_Order.xvg
+
+
+2.density 
+
+g_density -f 315Kstep7.4_production.trr -s 315Kstep7.2_production.tpr -n DMPC_Mel_Cl.ndx -center -o density/Try315.xvg
+
+choose 2, 0
+
+
+
+
+4. dihedral
+
+g_angle -f 315Kstep7.4_production.trr -n dihedral2.ndx -b 19000 -e 20000 -od 45nsangle2/315dire2.xvg -type dihedral
+
+
+
+g_angle -f 315Kstep7.4_production.trr -n dihedral3.ndx -b 29000 -e 30000 -od 55nsangle3/315dire3.xvg -type dihedral
+
+
+
+5. rmsf
+
+
+g_rmsf -f ../315Kstep7.4_production.trr -s ../315Kstep7.2_production.tpr -b 29000 -e 30000 -n Hrmsf2.ndx -o 315rmsf2_0.xvg
+
+g_rmsf -f ../310Kstep7.4_production.trr -s ../310Kstep7.2_production.tpr -b 29000 -e 30000 -n Hrmsf2.ndx -o 310rmsf2_0.xvg
+
+
+g_rmsf -f ../305Kstep7.4_production.trr -s ../305Kstep7.2_production.tpr -b 29000 -e 30000 -n Hrmsf2.ndx -o 305rmsf2_0.xvg
+
+
+remove the head of output file: 15dd
+
+---------------------------------------------------------------------------------------------------------------------------
+
+
+now new structure: (for DMPC only!!)
+
+
+make_ndx -f 280Kstep7.4_production.gro -o dihedral2.ndx
+
+ g_order -s 315Kstep7.4_production.tpr -f 315Kstep7.4_production.trr -n Chain2_Order.ndx -b 29000 -e 30000 -od 3_30analysis/315KChain2CHL_Order.xvg
+
+
+r 296 || r 333 || r 362||r 394||r 293 || r 292|| r 288||r 345 ||r 326||r 306||r 311||r 295||r 279||r 277||r 354 || r 286||r 320||r 367 ||r 281||r 280|| r 285||r 283||r 278|| r 291 || r 300 && C2  within 12
+
+
+r 296 || r 333 || r 362||r 394||r 293 || r 292|| r 288||r 345 ||r 326||r 306||r 311||r 295||r 279||r 277||r 354 || r 286||r 320||r 367 ||r 281||r 280|| r 285||r 283||r 278|| r 291 || r 300 || r 369||r 335|| r 339||r 436||r 481|| r 336||r 297||r 284||r 287||r 310||r 312||r 304||r 343||r 356||r 347|| r 282||r 358||r 383||r 294||r 401||r 314||r 327||r 79||r 37|| r 50||r 73||r 56||r 29||r 58||r 39||r 94 && C2  within 20 (25+22+9 = 56 )
+
+
+
+r 410 || r 303 || r 350 || r345 || r328 || r310 || r 313 || r 293 || r 295 || r 297 || r 287|| r 284 || r 281 || r 277 || r 279 || r 288 || r 283 || r 306 || r 282 || r 294 || r 280 || r 278 || r 305 || r 286 || r 298 || r 314 && C2   new within 12
+
+r 410 || r 303 || r 350 || r345 || r328 || r310 || r 313 || r 293 || r 295 || r 297 || r 287|| r 284 || r 281 || r 277 || r 279 || r 288 || r 283 || r 306 || r 282 || r 294 || r 280 || r 278 || r 305 || r 286 || r 298 || r 314 || r 319 || r 299 || r 323 || r 290 || r 285 || r 301 || r 368 || r 362 || r 333 || r 332 || r 289 || r 296|| r 321 || r 339 || r 311 ||r 315  && C2   new within 16 ( 26 +16 = 42 )
+
+
+
+
+now new structure: (for DMPC + CHL !!)
+
+upper half layer
+
+r 327 to 518 && C2
+
+
+within 12 (25)
+r 344 || r 330 || r 334 || r 362 || r335 || r342 || r336 || r337 ||r327 || r338 || r328 || r340 || r333 || r 329 || r346 || r345 || r 332|| r 339 || r 341 || r 331 || r 355 || r361 || r 379 || r 360 || r 354 && C2
+
+
+within 16 (37)
+r 344 || r 330 || r 334 || r 362 || r335 || r342 || r336 || r337 ||r327 || r338 || r328 || r340 || r333 || r 329 || r346 || r345 || r 332|| r 339 || r 341 || r 331 || r 355 || r361 || r 379 || r 360 || r 354 || r 366||r384 || r 401|| r 388 || r 380 || r 350 ||r 343 || r 347 ||r 348 || r 352 || r 359 || r 356 && C2
+
+
+within 20 ( 51 )
+r 344 || r 330 || r 334 || r 362 || r335 || r342 || r336 || r337 ||r327 || r338 || r328 || r340 || r333 || r 329 || r346 || r345 || r 332|| r 339 || r 341 || r 331 || r 355 || r361 || r 379 || r 360 || r 354 || r 366||r384 || r 401|| r 388 || r 380 || r 350 ||r 343 || r 347 ||r 348 || r 352 || r 359 || r 356  ||  r349 || r371 || r386|| r351 || r353|| r372 || r382 || r 390 || r 375 || r 385 || r 364 || r 378|| r 358|| r 357  && a C21
+
+
+RMSF 110 to 140
+
+trjconv -f 310Kstep7.7_production.trr -o 310K_begin.trr -b 20000 -e 30000
+
+trjconv -f 310Kstep7.8_production.trr -o 310K_end.trr -b 0 -e 20000
+
+trjcat -f ../280K_begin.trr ../280K_end.trr -o 280_7.5_110to140.trr
+
+trjconv -f ../280Kstep7.8_production.trr -s ../280Kstep7.8_production.tpr -o 140ns_280K.gro -b 20000 -e 20000
+
+
+
+---------------------------------------------------------------------------------------------------------------------------
+
+when calculating msd finding ndx:
+(display only) H*_&_DMPC
+vi gurgle.dat
+
+a H* && 21
+(21 means the existing group contains only DMPC)
+
+
+
+
+for DMPC only !!
+12
+r 296 || r 333 || r 362||r 394||r 293 || r 292|| r 288||r 345 ||r 326||r 306||r 311||r 295||r 279||r 277||r 354 || r 286||r 320||r 367 ||r 281||r 280|| r 285||r 283||r 278|| r 291 || r 300 && a H* && 19
+
+
+20
+r 296 || r 333 || r 362||r 394||r 293 || r 292|| r 288||r 345 ||r 326||r 306||r 311||r 295||r 279||r 277||r 354 || r 286||r 320||r 367 ||r 281||r 280|| r 285||r 283||r 278|| r 291 || r 300 || r 369||r 335|| r 339||r 436||r 481|| r 336||r 297||r 284||r 287||r 310||r 312||r 304||r 343||r 356||r 347|| r 282||r 358||r 383||r 294||r 401||r 314||r 327||r 79||r 37|| r 50||r 73||r 56||r 29||r 58||r 39||r 94 && a H* && 19
+
+
+
+
+for DMPC + CHL !!
+12
+r 344 || r 330 || r 334 || r 362 || r335 || r342 || r336 || r337 ||r327 || r338 || r328 || r340 || r333 || r 329 || r346 || r345 || r 332|| r 339 || r 341 || r 331 || r 355 || r361 || r 379 || r 360 || r 354 && a H* && 21
+
+
+20
+r 344 || r 330 || r 334 || r 362 || r335 || r342 || r336 || r337 ||r327 || r338 || r328 || r340 || r333 || r 329 || r346 || r345 || r 332|| r 339 || r 341 || r 331 || r 355 || r361 || r 379 || r 360 || r 354 || r 366||r384 || r 401|| r 388 || r 380 || r 350 ||r 343 || r 347 ||r 348 || r 352 || r 359 || r 356  ||  r349 || r371 || r386|| r351 || r353|| r372 || r382 || r 390 || r 375 || r 385 || r 364 || r 378|| r 358|| r 357  && a H* && 21
+
+
+---------------------------------------------
+
+echo 3 3 | g_hbond -f trr -s tpr -num xvg -ac xvg -b 10000 -e 15000 -a 30 -r 0.2425 -noda
+
+/lustre/medusa/zhiyao/gromacs-505/bin/g_hbond -f ../280Kstep7.8_production.trr  -s ../280Kstep7.8_production.tpr  -num 280_7.8num_mel.xvg -ac 280_7.8ac_mel.xvg -b 10000 -e 15000 -a 30 -r 0.2425 -noda
+
+12 15 for DMPC h2o
+12 1  for DMPC melittin
+
+
+/lustre/medusa/zhiyao/gromacs-505/bin/g_saltbr -f ../280Kstep7.8_production.trr  -s ../280Kstep7.8_production.tpr  -b 10000 -e 15000 -t 3
+
+New way for Hbond:
+echo 12 15 | /lustre/medusa/zhiyao/gromacs-505/bin/g_hbond -f ../280Kstep7.8_production.trr -s ../280Kstep7.8_production.tpr -num 280_chl_120~+3ns_num_h2o.xvg -b 0 -e 3000 -a 30 -r 0.2425 -noda
+echo 12 15 | /lustre/medusa/zhiyao/gromacs-505/bin/g_hbond -f ../280Kstep7.8_production.trr -s ../280Kstep7.8_production.tpr -num 280_dmpc_120~+3ns_num_h2o.xvg -b 0 -e 3000 -a 30 -r 0.2425 -noda
+
+
+
+
+
+for depth we calculate density:
+
+echo 12 1 | /lustre/medusa/zhiyao/gromacs-505/bin/g_density -f ../275Kstep7.8_production.trr -s ../275Kstep7.8_production.tpr -o 275density_system_melittin.xvg -center -b 0 -e 20000
+
+12 lipid 1 protein
+
+
+
+:1,450s/ N/&/gn 91N in melittin
+
+
+---------------shanghai--------------
+/lustre/medusa/zhiyao/gromacs-505/bin/trjconv -s 280Kstep7.8_production.tpr -f 280Kstep7.8_production.trr -b 15000 -e 20000 -o 280K_chl_dmpc_select.xtc
+
+
+
+/lustre/medusa/zhiyao/gromacs-505/bin/gmx convert-tpr -s 280Kstep7.8_production.tpr -o 280K_chl_dmpc_select.tpr 
+/lustre/medusa/zhiyao/gromacs-505/bin/gmx convert-tpr -s 310Kstep7.8_production.tpr -o 310K_chl_dmpc_select.tpr 
+select 14
+
+/lustre/medusa/zhiyao/gromacs-505/bin/trjconv -s 280K_chl_dmpc_select.tpr -f 280K_chl_dmpc_select.xtc -o 280K_chl_dmpc_select.gro -dump 15000
+/lustre/medusa/zhiyao/gromacs-505/bin/trjconv -s 310K_chl_dmpc_select.tpr -f 310K_chl_dmpc_select.xtc -o 310K_chl_dmpc_select.gro -dump 15000
+
+give out trr, gro
+
+scp 310K_chl_dmpc_select.gro  jun@202.120.52.43:~/DMPC
+P858jhb
+
+
+
+smaller scale
+/lustre/medusa/zhiyao/gromacs-505/bin/trjconv -f 310Kstep7.8_production.trr -o 310K_simple.trr -b 0 -e 20000 -skip 10 
+
+from 3000 to 200
+
+simple.trr to simplest.trr (20)
+
+
+
+cal tilt and splay
+
+
+/lustre/medusa/zhiyao/gromacs-505/bin/g_energy -f ../315Kstep7.8_production.edr -s ../315Kstep7.8_production.tpr -o 315energy.xvg
+
+
+new huanbo:
+/lustre/medusa/zhiyao/gromacs-505/bin/trjconv -f ../310Kstep7.8_production.trr -o 310_nojump.trr -pbc nojump
+
+/lustre/medusa/zhiyao/gromacs-505/bin/trjconv -s ../310Kstep7.8_production.tpr -f 310_nojump.trr -o 280K_DMPC_CHL_5ns.xtc -b 15000 -e 20000
+
+in
+/lustre/medusa/zhiyao/Bobby/
+
+
+
+
+
+/lustre/medusa/zhiyao/gromacs-505/bin/gmx convert-tpr  -s ../310Kstep7.8_production.tpr -o 310Klipid_protein.tpr -n protein_lipid.ndx
+
+/lustre/medusa/zhiyao/gromacs-505/bin/trjconv -f ../310K_simple.trr -s ../310Kstep7.8_production.tpr -fit rot+trans -n protein_lipid.ndx -o 310Kfit.trr
+
+
+/lustre/medusa/zhiyao/gromacs-505/bin/editconf -f ../310Kstep7.7_production.gro -n protein_lipid.ndx -o 310K_lipid.gro 
+
+
+/lustre/medusa/zhiyao/gromacs-505/bin/trjconv -f 310K_lipid.gro -o gromacs_unwrap.gro  -s 310Klipid_protein.tpr -pbc mol 
+
+
+split motion:
+
+/lustre/medusa/zhiyao/gromacs-505/bin/trjconv -f ../310Kstep7.8_production.trr  -s ../310Kstep7.8_production.tpr  -o 310KsplitDMPC.trr -pbc mol -b 19000 -e 20000 (-skip 10)
+
+#/lustre/medusa/zhiyao/gromacs-505/bin/trjconv -f 310KsplitDMPC.trr -s ../310Kstep7.8_production.tpr -n DMPC.ndx -b 19000 -e 19001 -o 310KsplitDMPC.gro
+
+#/lustre/medusa/zhiyao/gromacs-505/bin/trjconv -f ../310Kstep7.8_production.trr  -s ../310Kstep7.8_production.tpr  -o 310KsplitDMPC.gro -pbc mol -b 19000 -e 19001
+
+/lustre/medusa/zhiyao/gromacs-505/bin/trjconv -f ../310Kstep7.8_production.gro -s ../310Kstep7.8_production.tpr -o splitDMPC.gro -pbc mol
+
+-------------------------------------------------
+where is msd calculation
+cut_for_MSD_1.5_7.8
+allMSD:
+(diffusion constant)
+
+trjcat -f ../310Kstep7.4_production.trr  ../310Kstep7.5_production.trr ../310Kstep7.6_production.trr ../310Kstep7.7_production.trr ../310Kstep7.8_production.trr -n ../msd.ndx -o all310_DMPC_H.trr -settime
+(30000 60000 )
+
+
+debug(seg fault)
+/lustre/medusa/zhiyao/gromacs-505/bin/trjcat -f ../310K_simple.trr -n all.ndx -o test300.trr -settime
+g_msd -f all300_DMPC_H.trr -s refer.gro -o 300Kstep7.8.xvg -lateral z
+
+nohup echo 0 | g_msd -f all300_DMPC_H.trr -s refer.gro -o 300Kstep7.8.xvg -lateral z > 300.out 2>&1 &
+
+
+
+nohup vmd -e thirdMotion.tcl  2>&1 &
+
+~/dropbox/dropbox_uploader.sh upload splitMotion3rd /DMPC_melittin
+
+correlation:
+nohup vmd -e 275draft.tcl > 275.log 2>&1 & 
+HbondVMD:
+nohup vmd -e Hbond295.tcl > 295log 2>&1 &
+
+
+
+secondary structure:
+
+trjcat -f ../315Kstep7.8_production.trr -n melittin.ndx -o 315DMPC.trr
+trjconv -f ../315Kstep7.8_production.gro -s ../315Kstep7.8_production.tpr -n melittin.ndx -o DMPC.gro
+
+
+lastOneNs
+trjcat -f ../315Kstep7.8_production.trr -b 19000 -e 20000 -n ../msd.ndx -o 315DMPC.trr
+
+
+
+AAAAAAAAAAAAallMSD
+
+
+
+trjcat_mpi_d -f ../315Kstep7.7_production.trr ../315Kstep7.8_production.trr -n msd.ndx -o all315_DMPC_H.trr -settime
+
+---------------------
+MSD for split
+MSDforSplit
+
+echo 13 | trjconv -f ../310Kstep7.8_production.trr  -s ../310Kstep7.8_production.tpr  -o 310KsplitDMPC.trr -pbc mol &
+echo 0 | g_msd -f 310.trr -s ../../refer.gro -trestart 0.1 -o 310Kstep7.8.xvg -lateral z > 310.log  2>&1 &
+echo 0 | g_msd -f 280.trr -s ../../refer.gro -trestart 0.1 -o 280Kstep7.8.xvg -lateral z > 280.log  2>&1 &
+
+
+chl:
+echo 14 | trjconv -f ../310Kstep7.8_production.trr  -s ../310Kstep7.8_production.tpr  -o 310KsplitDMPC.trr -pbc mol > /dev/null 2>&1 &
+echo 14 | trjconv -f ../280Kstep7.8_production.trr  -s ../280Kstep7.8_production.tpr  -o 280KsplitDMPC.trr -pbc mol > /dev/null 2>&1 & 
+
+
+
+305 new clculation is also in AAAAA
+
+trjconv -f ../../../310Kstep7.8_production.trr -s ../../../310Kstep7.8_production.tpr -n DMPCmelittin.ndx -b 19000 -e 19001 -o 310KsplitDMPC.gro
+trjconv -f ../../../310Kstep7.8_production.trr  -s ../../../310Kstep7.8_production.tpr  -o 310KsplitDMPCmelittin.trr -n DMPCmelittin.ndx -pbc mol -b 19000 -e 20000
+
+places to give huanbo:
+/lustre/medusa/zhiyao/insertDMPCmoveout/step7/splitMotion/new_1st/310Near
+
+
