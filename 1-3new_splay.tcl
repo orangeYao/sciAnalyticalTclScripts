@@ -51,7 +51,7 @@ for {set nn 0} {$nn < 200} {incr nn 1} {
 		}
 		$p_to_calculate2 delete
 		$pnhead_sel delete
-                $ctail_sel delete
+        $ctail_sel delete
 	}
 	$p_to_calculate delete
 }
